@@ -26,7 +26,7 @@ func (j *JwtAction) Get() string {
 
 func main() {
     tg := tango.Classic()
-    tg.Use(New(Options{
+    tg.Use(jwt.New(jwt.Options{
         KeyFunc: func(ctx *tango.Context) (string, error) {
             return key, nil
         },

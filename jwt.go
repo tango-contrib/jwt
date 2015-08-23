@@ -60,17 +60,14 @@ func New(opts ...Options) tango.HandlerFunc {
 		}
 
 		if a, ok := ctx.Action().(auther); ok {
-			fmt.Println("1")
 			key, err := opt.KeyFunc(ctx)
 			if err != nil {
 				ctx.Result = err
 				return
 			}
 
-			fmt.Println("2")
 			auth := ctx.Req().Header.Get("Authorization")
 			l := len(Bearer)
-			fmt.Println("3", auth, l)
 			if len(auth) > l+1 && auth[:l] == Bearer {
 				t, err := jwt.Parse(auth[l+1:], func(token *jwt.Token) (interface{}, error) {
 					// Always check the signing method
@@ -81,7 +78,7 @@ func New(opts ...Options) tango.HandlerFunc {
 					// Return the key for validation
 					return []byte(key), nil
 				})
-				fmt.Println("4", t, err)
+
 				if err == nil && t.Valid {
 					// Store token claims
 					a.SetClaims(t.Claims)

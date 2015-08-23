@@ -28,7 +28,7 @@ func TestJwt(t *testing.T) {
 	tg := tango.Classic()
 	tg.Use(New(Options{
 		KeyFunc: func(ctx *tango.Context) (string, error) {
-			return "", nil
+			return DefaultKey, nil
 		},
 	}))
 	tg.Any("/jwt", new(JwtAction))
@@ -63,7 +63,7 @@ func TestJwt(t *testing.T) {
 		t.Error(err)
 	}
 
-	token, err := NewToken("JWT")
+	token, err := NewToken(DefaultKey)
 	if err != nil {
 		t.Error(err)
 	}

@@ -8,7 +8,7 @@ import (
 	"github.com/lunny/tango"
 )
 
-const (
+var (
 	Bearer        = "Bearer"
 	DefaultKey    = "JWT"
 )

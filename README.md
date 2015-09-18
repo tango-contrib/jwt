@@ -39,7 +39,7 @@ func main() {
             "username": name,
         })
 
-    req, err := http.NewRequst("GET""http://localhost:8000/jwt", nil)
+    req, err := http.NewRequst("GET","http://localhost:8000/jwt", nil)
     req.Header.Add("Authorization", "Bearer "+token)
 
     http.Do(req)
